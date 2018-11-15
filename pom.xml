@@ -30,6 +30,16 @@
       <artifactId>clojure</artifactId>
       <version>1.10.0-beta5</version>
     </dependency>
+    <dependency>
+      <groupId>lambdaisland</groupId>
+      <artifactId>kaocha</artifactId>
+      <version>0.0-266</version>
+    </dependency>
+    <dependency>
+      <groupId>cloverage</groupId>
+      <artifactId>cloverage</artifactId>
+      <version>1.0.13</version>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
