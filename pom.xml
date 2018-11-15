@@ -25,6 +25,11 @@
     <tag>315b6c4e11310e48122f0700bea8013cd4d2695e</tag>
   </scm>
   <dependencies>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojure</artifactId>
+      <version>1.10.0-beta5</version>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
