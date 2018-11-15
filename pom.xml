@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>kaocha-cloverage</artifactId>
-  <version>0.0-3</version>
+  <version>0.0-6</version>
   <name>kaocha</name>
   <description>Cloverage integration for Kaocha</description>
   <url>https://github.com/lambdaisland/kaocha-cloverage</url>
@@ -22,7 +22,7 @@
     <url>https://github.com/lambdaisland/kaocha-cloverage</url>
     <connection>scm:git:git://github.com/lambdaisland/kaocha-cloverage.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/kaocha-cloverage.git</developerConnection>
-    <tag>b6529efc71bbe23aae57c0e041a3926145d80630</tag>
+    <tag>f04d5c893768c8be5c474f85ec537f9c17eebcbb</tag>
   </scm>
   <dependencies>
     <dependency>
@@ -56,7 +56,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Git-Revision>b6529efc71bbe23aae57c0e041a3926145d80630</Git-Revision>
+              <Git-Revision>f04d5c893768c8be5c474f85ec537f9c17eebcbb</Git-Revision>
             </manifestEntries>
           </archive>
         </configuration>
