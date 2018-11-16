@@ -147,6 +147,7 @@
                                                  src-ns-path
                                                  source-paths)
                                   :test-ns-path test-paths
+                                  ;;:debug? true
                                   ::config config)]
         (run! cp/add-classpath test-paths)
         (throw+ {:kaocha/early-exit (run-cloverage opts)})))))

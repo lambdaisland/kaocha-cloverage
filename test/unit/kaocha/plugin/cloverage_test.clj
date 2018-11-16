@@ -133,6 +133,10 @@
         (with-redefs [cloverage.coverage/run-main run-main]
           (is (= [[:opts] {}] (cov/run-cloverage :opts)))))
 
+      (testing "no matching clause"
+        (alter-meta! #'cloverage.coverage/run-main assoc :arglists '([:a1 :a2 :a3]))
+        (is (thrown? java.lang.IllegalArgumentException (cov/run-cloverage :opts))))
+
       (finally
         (alter-meta! #'cloverage.coverage/run-main assoc :arglists arglists)))))
 
@@ -151,7 +155,11 @@
     (with-redefs [kaocha.api/run (fn [config]
                                    {:kaocha.result/tests [{:kaocha.result/count 3
                                                            :kaocha.result/pass 1
-                                                           :kaocha.result/fail 2}]})]
+                                                           :kaocha.result/fail 2}]})
+                  ;; unfortunately we can't invoke Cloverage "for real", or it
+                  ;; will really mess up our coverage results
+                  cloverage.coverage/run-main (fn [[opts] & _]
+                                                ((cloverage.coverage/runner-fn {:runner :kaocha}) opts))]
 
       (is (thrown? clojure.lang.ExceptionInfo
                    (plugin/run-hook* chain :kaocha.hooks/main {:cloverage/opts {:src-ns-path ["src"]}})))
