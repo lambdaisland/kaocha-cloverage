@@ -10,7 +10,7 @@
   {:extra-deps {nubank/matcher-combinators {:mvn/version "0.4.2"}}}
 
   :junit-xml
-  {:extra-deps {lambdaisland/kaocha-junit-xml {:mvn/version "0.0-18"}}}
+  {:extra-deps {lambdaisland/kaocha-junit-xml {:mvn/version "0.0-27"}}}
 
   :clojure-1.9
   {:extra-deps
