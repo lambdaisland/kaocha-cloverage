@@ -108,10 +108,16 @@
                (assoc :src-ns-path (:cov-src-ns-path opts))
 
                (contains? opts :cov-ns-regex)
-               (assoc :ns-regex (map re-pattern (:cov-ns-regex opts)))
+               (assoc :ns-regex (:cov-ns-regex opts))
 
                (contains? opts :cov-ns-exclude-regex)
-               (update :ns-exclude-regex into (map re-pattern (:cov-ns-exclude-regex opts)))))))
+               (update :ns-exclude-regex into (:cov-ns-exclude-regex opts))
+
+                :always
+                (update :ns-regex (partial map re-pattern))
+
+                :always
+                (update :ns-exclude-regex (partial map re-pattern))))))
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions
