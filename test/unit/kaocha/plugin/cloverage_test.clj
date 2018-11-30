@@ -107,8 +107,8 @@
 
     (testing "--cov-ns-regex"
       (is (= [] (:ns-regex (update-config' {} []))))
-      (is (= ["foo.*"] (map re->str (:ns-regex (update-config' {:ns-regex [#"foo.*"]} [])))))
-      (is (= ["bar"] (map re->str (:ns-regex (update-config' {:ns-regex [#"foo"]} ["--cov-ns-regex" "bar"]))))))
+      (is (= ["foo.*"] (map re->str (:ns-regex (update-config' {:ns-regex ["foo.*"]} [])))))
+      (is (= ["bar"] (map re->str (:ns-regex (update-config' {:ns-regex ["foo"]} ["--cov-ns-regex" "bar"]))))))
 
     (testing "--cov-src-ns-path"
       (is (= [] (:src-ns-path (update-config' {} []))))
@@ -117,8 +117,8 @@
 
     (testing "--cov-ns-exclude-regex"
       (is (= [] (:ns-exclude-regex (update-config' {} []))))
-      (is (= ["foo.*"] (map re->str (:ns-exclude-regex (update-config' {:ns-exclude-regex [#"foo.*"]} [])))))
-      (is (= ["foo" "bar"] (map re->str (:ns-exclude-regex (update-config' {:ns-exclude-regex [#"foo"]} ["--cov-ns-exclude-regex" "bar"]))))))))
+      (is (= ["foo.*"] (map re->str (:ns-exclude-regex (update-config' {:ns-exclude-regex ["foo.*"]} [])))))
+      (is (= ["foo" "bar"] (map re->str (:ns-exclude-regex (update-config' {:ns-exclude-regex ["foo"]} ["--cov-ns-exclude-regex" "bar"]))))))))
 
 (deftest run-cloverage-test
   (let [arglists (:arglists (meta #'cloverage.coverage/run-main))]
