@@ -33,7 +33,7 @@ bin/kaocha --plugin cloverage
 ``` clojure
 ;; tests.edn
 #kaocha/v1
-{:plugins [kaocha.plugin/cloverage]}
+{:plugins [:kaocha.plugin/cloverage]}
 ```
 
 This plugin adds a large amount of command line options to Kaocha. Run `bin/kaocha --plugin cloverage --help` to see them.
