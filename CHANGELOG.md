@@ -1,12 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
 - Allow configuring ns-regex and ns-exclude-regex from tests.edn ([#2](https://github.com/lambdaisland/kaocha-cloverage/pull/2))
-
-## Changed
 
 # 0.0-6 (2018-11-15 / 8308b88)
 
