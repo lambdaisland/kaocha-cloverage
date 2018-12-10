@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Don't rely on Cloverage to find namespaces, this fixes compatibility with Cucumber.
 
 # 0.0-18 (2018-12-05 / 9c8c629)
 

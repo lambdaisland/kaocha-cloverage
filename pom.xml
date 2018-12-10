@@ -4,7 +4,7 @@
   <groupId>lambdaisland</groupId>
   <artifactId>kaocha-cloverage</artifactId>
   <version>0.0-18</version>
-  <name>kaocha</name>
+  <name>kaocha-cloverage</name>
   <description>Cloverage integration for Kaocha</description>
   <url>https://github.com/lambdaisland/kaocha-cloverage</url>
   <inceptionYear>2018</inceptionYear>

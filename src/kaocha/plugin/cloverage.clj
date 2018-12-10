@@ -146,13 +146,14 @@
             suites         (remove :kaocha.testable/skip (:kaocha/tests config))
             source-paths   (mapcat :kaocha/source-paths suites)
             test-paths     (mapcat :kaocha/test-paths suites)
+            tests          (map :kaocha.testable/id suites)
             cloverage-opts (:cloverage/opts config)
             opts           (assoc cloverage-opts
                                   :runner :kaocha
                                   :src-ns-path (if-let [src-ns-path (seq (:src-ns-path cloverage-opts))]
                                                  src-ns-path
                                                  source-paths)
-                                  :test-ns-path test-paths
+                                  :extra-test-ns tests
                                   ;;:debug? true
                                   ::config config)]
         (run! cp/add-classpath test-paths)
