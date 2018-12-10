@@ -1,10 +1,25 @@
 (ns kaocha.plugin.cloverage-test
   (:require [clojure.test :refer :all]
-            [kaocha.plugin.cloverage :as cov]
-            [kaocha.core-ext :refer :all]
-            [matcher-combinators.test]
             [clojure.tools.cli :as cli]
-            [kaocha.plugin :as plugin]))
+            [kaocha.core-ext :refer :all]
+            [kaocha.plugin :as plugin]
+            [kaocha.plugin.cloverage :as cov]
+            [slingshot.slingshot :refer [try+]]))
+
+(require 'matcher-combinators.test)
+
+(defmethod assert-expr 'thrown+? [msg form]
+  ;; (is (thrown? m expr))
+  (let [m (second form)
+        body (nthnext form 2)]
+    `(try+
+      ~@body
+      (do-report {:type :fail, :message ~msg,
+                  :expected '~form, :actual nil})
+      (catch ~m e#
+        (do-report {:type :pass, :message ~msg,
+                    :expected '~form, :actual e#})
+        e#))))
 
 (deftest update-config-test
   (testing "when no options given"
@@ -161,10 +176,10 @@
                   cloverage.coverage/run-main (fn [[opts] & _]
                                                 ((cloverage.coverage/runner-fn {:runner :kaocha}) opts))]
 
-      (is (thrown? clojure.lang.ExceptionInfo
-                   (plugin/run-hook* chain :kaocha.hooks/main {:cloverage/opts {:src-ns-path ["src"]}})))
+      (is (thrown+? :kaocha/early-exit
+                    (plugin/run-hook* chain :kaocha.hooks/main {:cloverage/opts {:src-ns-path ["src"]}})))
 
-      (is (thrown? clojure.lang.ExceptionInfo
-                   (plugin/run-hook* chain
-                                     :kaocha.hooks/main
-                                     (kaocha.config/normalize {:tests {:source-paths ["src"]}})))))))
+      (is (thrown+? :kaocha/early-exit
+                    (plugin/run-hook* chain
+                                      :kaocha.hooks/main
+                                      (kaocha.config/normalize {:tests [{:source-paths ["src"]}]})))))))
