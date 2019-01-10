@@ -1,5 +1,5 @@
 {:paths ["src" "test"]
- :deps  {org.clojure/clojure {:mvn/version "1.10.0-beta5"}
+ :deps  {org.clojure/clojure {:mvn/version "1.10.0"}
          lambdaisland/kaocha {:mvn/version "0.0-313"}
          cloverage           {:mvn/version "1.0.13"}}
  :aliases
