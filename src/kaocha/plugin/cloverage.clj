@@ -111,7 +111,7 @@
                (assoc :src-ns-path (:cov-src-ns-path opts))
 
                (contains? opts :cov-exclude-call)
-               (update :exclude-call into (:cov-exclude-call opts))
+               (update :exclude-call into (map symbol (:cov-exclude-call opts)))
 
                (contains? opts :cov-ns-regex)
                (assoc :ns-regex (:cov-ns-regex opts))
