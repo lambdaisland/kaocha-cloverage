@@ -137,9 +137,9 @@
 
     (testing "--cov-exclude-call"
       (is (= [] (:exclude-call (update-config' {} []))))
-      (is (= ["my.ns/fn"] (:exclude-call (update-config' {:exclude-call ["my.ns/fn"]} []))))
-      (is (= ["my.other.ns/fn"] (:exclude-call (update-config' {} ["--cov-exclude-call" "my.other.ns/fn"]))))
-      (is (= ["my.ns/fn" "my.other.ns/fn"] (:exclude-call (update-config' {:exclude-call ["my.ns/fn"]} ["--cov-exclude-call" "my.other.ns/fn"])))))))
+      (is (= ['my.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} []))))
+      (is (= ['my.other.ns/fn] (:exclude-call (update-config' {} ["--cov-exclude-call" "my.other.ns/fn"]))))
+      (is (= ['my.ns/fn 'my.other.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} ["--cov-exclude-call" "my.other.ns/fn"])))))))
 
 (deftest run-cloverage-test
   (let [arglists (:arglists (meta #'cloverage.coverage/run-main))]
