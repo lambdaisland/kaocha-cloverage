@@ -1,6 +1,5 @@
 (ns kaocha.plugin.cloverage
-  (:require [clojure.string :as str]
-            [cloverage.coverage :as c]
+  (:require [cloverage.coverage :as c]
             [kaocha.api :as api]
             [kaocha.plugin :as plugin :refer [defplugin]]
             [kaocha.result :as result]
@@ -25,7 +24,8 @@
    :nop? false
    :src-ns-path []
    :ns-regex []
-   :ns-exclude-regex []})
+   :ns-exclude-regex []
+   :exclude-call []})
 
 (def cli-opts*
   [["--cov-output PATH" "Cloverage output directory."]
@@ -59,6 +59,9 @@
     :assoc-fn accumulate]
    ["--cov-src-ns-path PATH"
     "Path (string) to directory containing test namespaces (can be repeated). Defaults to test suite source paths."
+    :assoc-fn accumulate]
+   ["--cov-exclude-call NAME"
+    "Name of fn/macro whose call sites are not to be instrumented (can be repeated)."
     :assoc-fn accumulate]])
 
 (def cli-opts (map #(into [nil] %) cli-opts*))
@@ -107,17 +110,20 @@
                (contains? opts :cov-src-ns-path)
                (assoc :src-ns-path (:cov-src-ns-path opts))
 
+               (contains? opts :cov-exclude-call)
+               (assoc :exclude-call (:cov-exclude-call opts))
+
                (contains? opts :cov-ns-regex)
                (assoc :ns-regex (:cov-ns-regex opts))
 
                (contains? opts :cov-ns-exclude-regex)
                (update :ns-exclude-regex into (:cov-ns-exclude-regex opts))
 
-                :always
-                (update :ns-regex (partial map re-pattern))
+               :always
+               (update :ns-regex (partial map re-pattern))
 
-                :always
-                (update :ns-exclude-regex (partial map re-pattern))))))
+               :always
+               (update :ns-exclude-regex (partial map re-pattern))))))
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions
