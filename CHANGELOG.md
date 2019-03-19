@@ -2,9 +2,13 @@
 
 ## Added
 
+- Allow passing excluded calls to Cloverage, see also [Cloverage#242](https://github.com/cloverage/cloverage/pull/242)
+
 ## Fixed
 
 ## Changed
+
+- Upgrade Cloverage to version 1.1.1
 
 # 0.0-22 (2018-12-10 / ee13a86)
 
