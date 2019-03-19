@@ -33,12 +33,12 @@
     <dependency>
       <groupId>lambdaisland</groupId>
       <artifactId>kaocha</artifactId>
-      <version>0.0-313</version>
+      <version>0.0-389</version>
     </dependency>
     <dependency>
       <groupId>cloverage</groupId>
       <artifactId>cloverage</artifactId>
-      <version>1.0.13</version>
+      <version>1.1.1</version>
     </dependency>
   </dependencies>
   <build>
