@@ -1,10 +1,10 @@
 {:paths ["src" "test"]
  :deps  {org.clojure/clojure {:mvn/version "1.10.0"}
-         lambdaisland/kaocha {:mvn/version "0.0-343"}
+         lambdaisland/kaocha {:mvn/version "0.0-389"}
          cloverage           {:mvn/version "1.1.1"}}
  :aliases
  {:dev
   {}
 
   :test
-  {:extra-deps {nubank/matcher-combinators {:mvn/version "0.5.0"}}}}}
+  {:extra-deps {nubank/matcher-combinators {:mvn/version "0.7.0"}}}}}
