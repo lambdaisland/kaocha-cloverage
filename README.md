@@ -63,8 +63,8 @@ Alternatively Cloverage can be configured through `tests.edn`. Source paths spec
 
 <!-- license-epl -->
 ## License
-
-Copyright &copy; 2018 Arne Brasseur
-
+&nbsp;
+Copyright &copy; 2018-2019 Arne Brasseur
+&nbsp;
 Available under the terms of the Eclipse Public License 1.0, see LICENSE.txt
 <!-- /license-epl -->
