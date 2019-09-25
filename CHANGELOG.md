@@ -1,12 +1,8 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
 - Support code using tagged literals ([#6](https://github.com/lambdaisland/kaocha-cloverage/pull/6))
-
-## Changed
 
 # 0.0-32 (2019-03-19 / 8da7e96)
 
