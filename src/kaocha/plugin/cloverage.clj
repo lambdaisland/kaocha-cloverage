@@ -127,10 +127,18 @@
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions
-  (let [arity (count (first (:arglists (meta #'c/run-main))))]
-    (case arity
-      1 (c/run-main [opts])
-      2 (c/run-main [opts] {}))))
+  (let [arity (count (first (:arglists (meta #'c/run-main))))
+        decls      (-> []
+                       (.getClass)
+                       (.getClassLoader)
+                       (.getResources "data_readers.clj")
+                       enumeration-seq)
+        read-decls (comp read-string slurp)
+        readers    (reduce merge {} (map read-decls decls))]
+    (binding [clojure.tools.reader/*data-readers* readers]
+      (case arity
+        1 (c/run-main [opts])
+        2 (c/run-main [opts] {})))))
 
 (defplugin kaocha.plugin/cloverage
   (cli-options [opts]
