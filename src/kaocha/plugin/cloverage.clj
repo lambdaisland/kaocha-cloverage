@@ -127,7 +127,7 @@
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions
-  (let [arity (count (first (:arglists (meta #'c/run-main))))
+  (let [arity      (count (first (:arglists (meta #'c/run-main))))
         decls      (-> []
                        (.getClass)
                        (.getClassLoader)
