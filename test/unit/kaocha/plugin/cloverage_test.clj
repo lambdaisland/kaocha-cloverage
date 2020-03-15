@@ -1,4 +1,5 @@
 (ns kaocha.plugin.cloverage-test
+  (:refer-clojure :exclude [symbol])
   (:require [clojure.test :refer :all]
             [clojure.tools.cli :as cli]
             [kaocha.core-ext :refer :all]
@@ -142,24 +143,24 @@
       (is (= ['my.ns/fn 'my.other.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} ["--cov-exclude-call" "my.other.ns/fn"])))))))
 
 (deftest run-cloverage-test
-  (let [arglists (:arglists (meta #'cloverage.coverage/run-main))]
+  (let [arglists (:arglists (meta #'lambdaisland.cloverage.coverage/run-main))]
     (try
       (let [run-main (fn [a1] a1)]
-        (alter-meta! #'cloverage.coverage/run-main assoc :arglists '([:a1]))
-        (with-redefs [cloverage.coverage/run-main run-main]
+        (alter-meta! #'lambdaisland.cloverage.coverage/run-main assoc :arglists '([:a1]))
+        (with-redefs [lambdaisland.cloverage.coverage/run-main run-main]
           (is (= [:opts] (cov/run-cloverage :opts)))))
 
       (let [run-main (fn [a1 a2] [a1 a2])]
-        (alter-meta! #'cloverage.coverage/run-main assoc :arglists '([:a1 :a2]))
-        (with-redefs [cloverage.coverage/run-main run-main]
+        (alter-meta! #'lambdaisland.cloverage.coverage/run-main assoc :arglists '([:a1 :a2]))
+        (with-redefs [lambdaisland.cloverage.coverage/run-main run-main]
           (is (= [[:opts] {}] (cov/run-cloverage :opts)))))
 
       (testing "no matching clause"
-        (alter-meta! #'cloverage.coverage/run-main assoc :arglists '([:a1 :a2 :a3]))
+        (alter-meta! #'lambdaisland.cloverage.coverage/run-main assoc :arglists '([:a1 :a2 :a3]))
         (is (thrown? java.lang.IllegalArgumentException (cov/run-cloverage :opts))))
 
       (finally
-        (alter-meta! #'cloverage.coverage/run-main assoc :arglists arglists)))))
+        (alter-meta! #'lambdaisland.cloverage.coverage/run-main assoc :arglists arglists)))))
 
 (deftest cloverage-plugin-test
   (let [chain (plugin/load-all [:kaocha.plugin/cloverage])]
@@ -179,8 +180,8 @@
                                                            :kaocha.result/fail 2}]})
                   ;; unfortunately we can't invoke Cloverage "for real", or it
                   ;; will really mess up our coverage results
-                  cloverage.coverage/run-main (fn [[opts] & _]
-                                                ((cloverage.coverage/runner-fn {:runner :kaocha}) opts))]
+                  lambdaisland.cloverage.coverage/run-main (fn [[opts] & _]
+                                                ((lambdaisland.cloverage.coverage/runner-fn {:runner :kaocha}) opts))]
 
       (is (thrown+? :kaocha/early-exit
                     (plugin/run-hook* chain :kaocha.hooks/main {:cloverage/opts {:src-ns-path ["src"]}})))

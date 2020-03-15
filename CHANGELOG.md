@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Get rid of clojure.tools.reader warnings, by switching to a Cloverage version
+  that does not include an AOT compiled clojure.tools.reader.
 
 # 0.0-41 (2019-09-25 / 0f12673)
 
