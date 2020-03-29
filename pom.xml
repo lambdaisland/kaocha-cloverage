@@ -28,17 +28,17 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.10.0</version>
+      <version>1.10.1</version>
     </dependency>
     <dependency>
       <groupId>lambdaisland</groupId>
       <artifactId>kaocha</artifactId>
-      <version>0.0-389</version>
+      <version>0.0-601</version>
     </dependency>
     <dependency>
-      <groupId>cloverage</groupId>
+      <groupId>lambdaisland</groupId>
       <artifactId>cloverage</artifactId>
-      <version>1.1.1</version>
+      <version>1.1.2-no-aot</version>
     </dependency>
   </dependencies>
   <build>
