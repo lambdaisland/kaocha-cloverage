@@ -1,5 +1,5 @@
 (ns kaocha.plugin.cloverage
-  (:require [lambdaisland.cloverage.coverage :as c]
+  (:require [cloverage.coverage :as c]
             [kaocha.api :as api]
             [kaocha.plugin :as plugin :refer [defplugin]]
             [kaocha.result :as result]
