@@ -1,10 +1,9 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
 ## Changed
+
+- Switch back to vanilla Cloverage, and bump it to 1.1.3. This version no longer
+  contains an aot-compiled tools.reader.
 
 # 1.0-45 (2020-03-29 / 8642129)
 
