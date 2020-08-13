@@ -17,13 +17,13 @@ If you find value in our work please consider [becoming a backer on Open Collect
 deps.edn
 
 ```
-lambdaisland/kaocha-cloverage {:mvn/version "1.0-45"}
+lambdaisland/kaocha-cloverage {:mvn/version "1.0.56"}
 ```
 
 project.clj
 
 ```
-[lambdaisland/kaocha-cloverage "1.0-45"]
+[lambdaisland/kaocha-cloverage "1.0.56"]
 ```
 
 ## Usage
