@@ -1,0 +1,13 @@
+#!bin/bb
+
+(ns proj
+  (:require [clojure.java.shell :as sh]))
+
+(lioss/main
+ {:license        :epl
+  :inception-year 2018
+  :description    "Code coverage plugin for Kaocha based on Cloverage"})
+
+;; Local Variables:
+;; mode:clojure
+;; End:

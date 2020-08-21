@@ -114,10 +114,10 @@ we may still consider making breaking changes, if there is consensus that the
 changes are justified.
 <!-- /contributing -->
 
-<!-- license-epl -->
+<!-- license -->
 ## License
 &nbsp;
 Copyright &copy; 2018-2020 Arne Brasseur and Contributors
 &nbsp;
 Available under the terms of the Eclipse Public License 1.0, see LICENSE.txt
-<!-- /license-epl -->
+<!-- /license -->
