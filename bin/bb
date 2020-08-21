@@ -2,13 +2,21 @@
 
 # Wrapper script for babashka to be dropped into projects, will run `bb` from
 # the PATH if it exists, or otherwise download it and store it inside the
-# project.
+# project. When using the system `bb` it will do a version check and warn if the
+# version is older than what is requested.
+#
+# Will look for a `bb_deps.edn` and run that through `clojure` to compute a
+# classpath.
+#
+# Will use rlwrap if it is available.
 
 name=babashka
-version="0.0.94"
-install_dir="$(pwd)/.store/$name-$version"
+babashka_version="0.1.3"
+store_dir="$(pwd)/.store"
+install_dir="${store_dir}/$name-$babashka_version"
 
 system_bb="$(which bb)"
+set -e
 
 # https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
 vercomp () {
@@ -52,8 +60,8 @@ else
         Darwin*)    platform=macos;;
     esac
 
-    echo "$name $version not found, installing to $install_dir..."
-    download_url="https://github.com/borkdude/babashka/releases/download/v$version/babashka-$version-$platform-amd64.zip"
+    echo "$name $babashka_version not found, installing to $install_dir..."
+    download_url="https://github.com/borkdude/babashka/releases/download/v$babashka_version/babashka-$babashka_version-$platform-amd64.zip"
 
     mkdir -p $install_dir
     echo -e "Downloading $download_url."
@@ -63,22 +71,39 @@ else
     bb_path="$install_dir/bb"
 fi
 
+set +e
 actual_version="$($bb_path --version | sed 's/babashka v//')"
 
-vercomp $actual_version $version
+vercomp $actual_version $babashka_version
 case $? in
      0) ;;  # =
      1) ;;  # >
-     2) echo "WARNING: babashka version is $actual_version, expected $version" ;;  # <
+     2) echo "WARNING: babashka version is $actual_version, expected $babashka_version" ;;  # <
 esac
+set -e
+
+try_exec_rlwrap() {
+    if [ -x "$(command -v rlwrap)" ]; then
+        exec "rlwrap" "$@"
+    else
+        exec "$@"
+    fi
+}
+
+deps_clj="$(pwd)/.store/deps.clj"
+
+ensure_deps_clj() {
+    if [[ ! -f "${deps_clj}" ]]; then
+        mkdir -p "${store_dir}"
+        curl -sL https://raw.githubusercontent.com/borkdude/deps.clj/master/deps.clj -o "${deps_clj}"
+    fi
+}
 
 if [[ -f bb_deps.edn ]]; then
-    deps="$(cat bb_deps.edn)"
-    mv deps.edn deps.edn.bak
-    cp="$(clojure -Srepro -Sdeps "${deps}" -Spath)"
-    mv deps.edn.bak deps.edn
-
-    exec "rlwrap" "$bb_path" "-cp" "${cp}" "$@"
+    ensure_deps_clj
+    # Note this will install clojure-tools in ~/.deps.clj/ClojureTools
+    cp="$($bb_path $deps_clj -Srepro -Sdeps-file bb_deps.edn -Spath)"
+    try_exec_rlwrap "$bb_path" "-cp" "${cp}" "$@"
 else
-    exec "rlwrap" "$bb_path" "$@"
+    try_exec_rlwrap "$bb_path" "$@"
 fi

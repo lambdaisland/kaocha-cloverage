@@ -1,7 +1,6 @@
 #!bin/bb
 
-(ns proj
-  (:require [clojure.java.shell :as sh]))
+(ns proj (:require [lioss.main :as lioss]))
 
 (lioss/main
  {:license        :epl
