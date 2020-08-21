@@ -1,10 +1,8 @@
 # Unreleased
 
-## Added
-
-## Fixed
-
 ## Changed
+
+- Bump Cloverage to 1.2.0
 
 # 1.0.56 (2020-08-13 / 304162e)
 
