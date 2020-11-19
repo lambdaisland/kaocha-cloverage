@@ -22,20 +22,21 @@
                     :expected '~form, :actual e#})
         e#))))
 
+(defn- update-config' [config cli-opts]
+  (let [opts (-> cli-opts
+                 (cli/parse-opts cov/cli-opts)
+                 :options)]
+    (-> {:kaocha/cli-options opts
+         :cloverage/opts config}
+        (cov/update-config)
+        :cloverage/opts)))
+
 (deftest update-config-test
   (testing "when no options given"
     (testing "it populates with defaults"
       (is (= cov/default-opts (:cloverage/opts (cov/update-config {}))))))
 
-  (let [update-config' (fn [config cli-opts]
-                         (let [opts (-> cli-opts
-                                        (cli/parse-opts cov/cli-opts)
-                                        :options)]
-                           (-> {:kaocha/cli-options opts
-                                :cloverage/opts config}
-                               (cov/update-config)
-                               :cloverage/opts)))
-        re->str (fn [re]
+  (let [re->str (fn [re]
                   (is (regex? re))
                   (str re))]
 
@@ -140,7 +141,12 @@
       (is (= [] (:exclude-call (update-config' {} []))))
       (is (= ['my.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} []))))
       (is (= ['my.other.ns/fn] (:exclude-call (update-config' {} ["--cov-exclude-call" "my.other.ns/fn"]))))
-      (is (= ['my.ns/fn 'my.other.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} ["--cov-exclude-call" "my.other.ns/fn"])))))))
+      (is (= ['my.ns/fn 'my.other.ns/fn] (:exclude-call (update-config' {:exclude-call ['my.ns/fn]} ["--cov-exclude-call" "my.other.ns/fn"])))))
+
+    (testing "--test-ns-regex"
+      (is (= [] (:test-ns-regex (update-config' {} []))))
+      (is (= ["foo.*"] (map re->str (:test-ns-regex (update-config' {:test-ns-regex ["foo.*"]} [])))))
+      (is (= ["foo" "bar"] (map re->str (:test-ns-regex (update-config' {:test-ns-regex ["foo"]} ["--cov-test-ns-regex" "bar"]))))))))
 
 (deftest run-cloverage-test
   (let [arglists (:arglists (meta #'cloverage.coverage/run-main))]
