@@ -25,7 +25,8 @@
    :src-ns-path []
    :ns-regex []
    :ns-exclude-regex []
-   :exclude-call []})
+   :exclude-call []
+   :test-ns-regex []})
 
 (def cli-opts*
   [["--cov-output PATH" "Cloverage output directory."]
@@ -120,13 +121,13 @@
                (update :ns-exclude-regex into (:cov-ns-exclude-regex opts))
 
                :always
-               (update :test-ns-regex (partial map re-pattern))
+               (update :test-ns-regex (partial mapv re-pattern))
 
                :always
-               (update :ns-regex (partial map re-pattern))
+               (update :ns-regex (partial mapv re-pattern))
 
                :always
-               (update :ns-exclude-regex (partial map re-pattern))))))
+               (update :ns-exclude-regex (partial mapv re-pattern))))))
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions

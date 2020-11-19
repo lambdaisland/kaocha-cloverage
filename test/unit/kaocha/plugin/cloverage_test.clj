@@ -1,6 +1,6 @@
 (ns kaocha.plugin.cloverage-test
   (:refer-clojure :exclude [symbol])
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest testing is]]
             [clojure.tools.cli :as cli]
             [kaocha.core-ext :refer :all]
             [kaocha.plugin :as plugin]
