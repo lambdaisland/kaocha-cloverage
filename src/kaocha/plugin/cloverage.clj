@@ -120,6 +120,9 @@
                (update :ns-exclude-regex into (:cov-ns-exclude-regex opts))
 
                :always
+               (update :test-ns-regex (partial map re-pattern))
+
+               :always
                (update :ns-regex (partial map re-pattern))
 
                :always
