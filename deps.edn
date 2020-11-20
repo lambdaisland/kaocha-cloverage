@@ -1,4 +1,4 @@
-{:paths ["src" "test"]
+{:paths ["src" "test/unit"]
  :deps  {org.clojure/clojure {:mvn/version "1.10.1"}
          lambdaisland/kaocha {:mvn/version "0.0-601"}
          cloverage/cloverage {:mvn/version "1.2.0"}}

@@ -1,21 +1,15 @@
 # Unreleased
 
-## Added
-
 ## Fixed
 
-## Changed
+- Fix cljdoc build
 
 # 1.0.72 (2020-11-20 / 20ea1aa)
-
-## Added
 
 ## Fixed
 
 - handle correctly test-ns-regex, converting strings into regexes and
   adding cli support for the option as `--cov-test-ns-regex`
-
-## Changed
 
 # 1.0.63 (2020-08-21 / 83f3706)
 
