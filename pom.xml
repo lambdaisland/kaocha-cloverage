@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>kaocha-cloverage</artifactId>
-  <version>1.0.72</version>
+  <version>1.0.75</version>
   <name>kaocha-cloverage</name>
   <description>Code coverage plugin for Kaocha based on Cloverage</description>
   <url>https://github.com/lambdaisland/kaocha-cloverage</url>
@@ -22,7 +22,7 @@
     <url>https://github.com/lambdaisland/kaocha-cloverage</url>
     <connection>scm:git:git://github.com/lambdaisland/kaocha-cloverage.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/kaocha-cloverage.git</developerConnection>
-    <tag>27a6b3ec858561f1562308f281b70e4642b95ae2</tag>
+    <tag>a12680ffd246379906909c4f9836dea356f4f6d0</tag>
   </scm>
   <dependencies>
     <dependency>
@@ -48,7 +48,7 @@
         <directory>src</directory>
       </resource>
       <resource>
-        <directory>test</directory>
+        <directory>test/unit</directory>
       </resource>
     </resources>
     <plugins>
@@ -64,7 +64,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>27a6b3ec858561f1562308f281b70e4642b95ae2</git-revision>
+              <git-revision>a12680ffd246379906909c4f9836dea356f4f6d0</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
