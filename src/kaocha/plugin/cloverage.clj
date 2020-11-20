@@ -1,5 +1,6 @@
 (ns kaocha.plugin.cloverage
   (:require [cloverage.coverage :as c]
+            [clojure.tools.reader :as reader]
             [kaocha.api :as api]
             [kaocha.plugin :as plugin :refer [defplugin]]
             [kaocha.result :as result]
@@ -25,7 +26,8 @@
    :src-ns-path []
    :ns-regex []
    :ns-exclude-regex []
-   :exclude-call []})
+   :exclude-call []
+   :test-ns-regex []})
 
 (def cli-opts*
   [["--cov-output PATH" "Cloverage output directory."]
@@ -51,6 +53,9 @@
     "Sets the high watermark percentage (valid values 0..100). Default: 80%"
     :parse-fn #(Integer/parseInt %)]
    ["--[no-]cov-nop" "Instrument with noops."]
+   ["--cov-test-ns-regex REGEX"
+    "Regex for test namespaces (can be repeated)."
+    :assoc-fn accumulate]
    ["--cov-ns-regex REGEX"
     "Regex for instrumented namespaces (can be repeated)."
     :assoc-fn accumulate]
@@ -119,11 +124,17 @@
                (contains? opts :cov-ns-exclude-regex)
                (update :ns-exclude-regex into (:cov-ns-exclude-regex opts))
 
-               :always
-               (update :ns-regex (partial map re-pattern))
+               (contains? opts :cov-test-ns-regex)
+               (update :test-ns-regex into (:cov-test-ns-regex opts))
 
                :always
-               (update :ns-exclude-regex (partial map re-pattern))))))
+               (update :test-ns-regex (partial mapv re-pattern))
+
+               :always
+               (update :ns-regex (partial mapv re-pattern))
+
+               :always
+               (update :ns-exclude-regex (partial mapv re-pattern))))))
 
 (defn run-cloverage [opts]
   ;; Compatibility with future versions
@@ -135,7 +146,7 @@
                        enumeration-seq)
         read-decls (comp read-string slurp)
         readers    (reduce merge {} (map read-decls decls))]
-    (binding [clojure.tools.reader/*data-readers* readers]
+    (binding [reader/*data-readers* readers]
       (case arity
         1 (c/run-main [opts])
         2 (c/run-main [opts] {})))))
