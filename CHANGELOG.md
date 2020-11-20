@@ -1,4 +1,4 @@
-# Unreleased
+# 1.0.72 (2020-11-20 / 20ea1aa)
 
 ## Added
 

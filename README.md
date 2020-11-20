@@ -33,13 +33,13 @@ so that we may continue to enjoy a thriving Clojure ecosystem.
 deps.edn
 
 ```
-lambdaisland/kaocha-cloverage {:mvn/version "1.0.63"}
+lambdaisland/kaocha-cloverage {:mvn/version "1.0.72"}
 ```
 
 project.clj
 
 ```
-[lambdaisland/kaocha-cloverage "1.0.63"]
+[lambdaisland/kaocha-cloverage "1.0.72"]
 ```
 
 ## Usage
