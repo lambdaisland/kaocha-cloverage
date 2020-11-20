@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>kaocha-cloverage</artifactId>
-  <version>1.0.63</version>
+  <version>1.0.72</version>
   <name>kaocha-cloverage</name>
   <description>Code coverage plugin for Kaocha based on Cloverage</description>
   <url>https://github.com/lambdaisland/kaocha-cloverage</url>
@@ -22,7 +22,7 @@
     <url>https://github.com/lambdaisland/kaocha-cloverage</url>
     <connection>scm:git:git://github.com/lambdaisland/kaocha-cloverage.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/kaocha-cloverage.git</developerConnection>
-    <tag>2b482ad1c712d012d63d14165b774b767e37d2a5</tag>
+    <tag>27a6b3ec858561f1562308f281b70e4642b95ae2</tag>
   </scm>
   <dependencies>
     <dependency>
@@ -54,12 +54,17 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.2.0</version>
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>2b482ad1c712d012d63d14165b774b767e37d2a5</git-revision>
+              <git-revision>27a6b3ec858561f1562308f281b70e4642b95ae2</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
@@ -67,7 +72,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
+        <version>1.6</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
