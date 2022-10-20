@@ -1,7 +1,7 @@
 {:paths ["src"]
  :deps  {org.clojure/clojure {:mvn/version "1.10.1"}
          lambdaisland/kaocha {:mvn/version "0.0-601"}
-         cloverage/cloverage {:mvn/version "1.2.0"}}
+         cloverage/cloverage {:mvn/version "1.2.4"}}
  :aliases
  {:dev
   {}
