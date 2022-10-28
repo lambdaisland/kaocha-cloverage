@@ -6,6 +6,8 @@
 
 ## Changed
 
+- Bumped Cloverage dependency to `1.2.4`.
+
 # 1.0.75 (2020-11-20 / 4c85364)
 
 ## Fixed
