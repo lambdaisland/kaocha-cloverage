@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>lambdaisland</groupId>
   <artifactId>kaocha-cloverage</artifactId>
-  <version>1.0.75</version>
+  <version>1.1.89</version>
   <name>kaocha-cloverage</name>
   <description>Code coverage plugin for Kaocha based on Cloverage</description>
   <url>https://github.com/lambdaisland/kaocha-cloverage</url>
@@ -12,6 +12,9 @@
     <name>Lambda Island</name>
     <url>https://lambdaisland.com</url>
   </organization>
+  <properties>
+    <project class="build sourceEncoding">UTF-8</project>
+  </properties>
   <licenses>
     <license>
       <name>Eclipse Public License 1.0</name>
@@ -22,7 +25,7 @@
     <url>https://github.com/lambdaisland/kaocha-cloverage</url>
     <connection>scm:git:git://github.com/lambdaisland/kaocha-cloverage.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/lambdaisland/kaocha-cloverage.git</developerConnection>
-    <tag>a12680ffd246379906909c4f9836dea356f4f6d0</tag>
+    <tag>b98729d1a5900e7572617a145d1c70178df79614</tag>
   </scm>
   <dependencies>
     <dependency>
@@ -38,7 +41,13 @@
     <dependency>
       <groupId>cloverage</groupId>
       <artifactId>cloverage</artifactId>
-      <version>1.2.0</version>
+      <version>1.2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>nubank</groupId>
+      <artifactId>matcher-combinators</artifactId>
+      <version>0.7.0</version>
+      <optional>true</optional>
     </dependency>
   </dependencies>
   <build>
@@ -53,6 +62,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -61,7 +74,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <git-revision>a12680ffd246379906909c4f9836dea356f4f6d0</git-revision>
+              <git-revision>b98729d1a5900e7572617a145d1c70178df79614</git-revision>
             </manifestEntries>
           </archive>
         </configuration>
