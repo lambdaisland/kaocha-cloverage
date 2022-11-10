@@ -3,9 +3,11 @@
 (ns proj (:require [lioss.main :as lioss]))
 
 (lioss/main
- {:license        :epl
-  :inception-year 2018
-  :description    "Code coverage plugin for Kaocha based on Cloverage"})
+ {:license                   :epl
+  :inception-year            2018
+  :description               "Code coverage plugin for Kaocha based on Cloverage"
+  :group-id                  "lambdaisland"
+  :aliases-as-optional-deps  [:test]})
 
 ;; Local Variables:
 ;; mode:clojure
